@@ -4,7 +4,7 @@ import SearchBar from "../SearchBar/SearchBar.js";
 import Playlist from "../ Playlist/ Play_list";
 import  SearchResults  from "../SearchResults/SearchResults";
 import Spotify from "../../util/Spotify";
-
+import { toast } from 'react-hot-toast';
 
 
 class App extends React.Component {
@@ -30,6 +30,7 @@ class App extends React.Component {
     }
     tracks.push(track);
     this.setState({ playlistTracks: tracks });
+    toast.success('Added to Playlist')
   }
 
   removeTrack(track) {
@@ -37,6 +38,7 @@ class App extends React.Component {
     tracks = tracks.filter(currentTrack => currentTrack.id !== track.id);
 
     this.setState({ playlistTracks: tracks });
+    toast.error('Playlist Removed!')
   }
 
   updatePlaylistName(name) {
@@ -58,8 +60,10 @@ class App extends React.Component {
   
   search(term) {
     Spotify.search(term).then(searchResults => {
-      this.setState({ searchResults: searchResults})
-    })
+      this.setState({ searchResults: searchResults}
+        )
+    });
+    
   }
 
   render() {
@@ -70,7 +74,7 @@ class App extends React.Component {
     </h1>
    
     <div className="App">
-     
+      
       <SearchBar onSearch={this.search}/>
     
       <div className="App-playlist">
@@ -88,6 +92,9 @@ class App extends React.Component {
         />
       </div>
     </div>
+    
+      <p className="highlight-p">Copyright all rights reserved 2022</p>
+    
     </div> 
   )
  }

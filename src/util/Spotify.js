@@ -1,7 +1,7 @@
 let accessToken;
 const clientId = "e7dcf129a010450fb4c02cc88133ebba";
-// const redirectUri = "https://jamming2-thearak.surge.sh/";
-const redirectUri = "http://localhost:3000/";
+const redirectUri = "https://jamming2-thearak.surge.sh/";
+// const redirectUri = "http://localhost:3000/";
 const Spotify = {
   getAccessToken() {
     if (accessToken) {
@@ -31,9 +31,13 @@ const Spotify = {
     return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, 
     {
       headers: { Authorization: `Bearer ${accessToken}` },
-    }).then(response => {
+    })
+    
+    .then(response => {
         return response.json();
-    }).then(jsonResponse => {
+    })
+    
+    .then(jsonResponse => {
         if(!jsonResponse.tracks) {
             return [];
         }
@@ -46,37 +50,6 @@ const Spotify = {
         }));
     });
   },
-
-  // search(searchTerm) {
-  //   let spotifyTracks = fetch(
-  //     `https://api.spotify.com/v1/search?type=track&q=${searchTerm}`,
-  //     {
-  //       headers: { Authorization: `Bearer ${accessToken}` },
-  //     }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((jsonResponse) => {
-  //       if (!jsonResponse) {
-  //         return [{}];
-  //       }
-
-  //       let tracks = jsonResponse.tracks.items.map((track) => ({
-  //         id: track.id,
-  //         name: track.name,
-  //         artist: track.artists[0].name,
-  //         album: track.album.name,
-  //         uri: track.uri,
-  //       }));
-
-  //       return tracks;
-  //     })
-  //     .catch((error) => {
-  //       console.log("Spotify search error");
-  //     });
-
-  //   return spotifyTracks;
-  // },
-
   
   savePlaylist(name, trackUris) {
     if (!name || !trackUris.length) {
@@ -106,9 +79,6 @@ const Spotify = {
           body: JSON.stringify({ uris: trackUris})
         })
     } )
-  }
-
-
-};
-
+}
+}
 export default Spotify;

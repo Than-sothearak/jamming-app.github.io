@@ -20,6 +20,14 @@ h1 {
 .highlight {
     margin: 0;
 }
+.highlight-p {
+  color: white;
+  font-size: 16px;
+  background-color: black;
+  margin: 0;
+  text-align: center;
+  padding: 10px;
+}
 h1 .highlight {
   margin: 0;
   color: #6c41ec;
